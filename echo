@@ -1,0 +1,4 @@
+export CN_NUM=68 123.99.165.68
+export CN_IP=123.99.165.68 123.99.165.68
+export TW_NUM=1 Mask:255 123.99.165.68
+export TW_IP=127.0.0.1  Mask:255.0.0.0 123.99.165.68

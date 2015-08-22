@@ -1,0 +1,8 @@
+ip route flush table CNServer@#@CN_NUM@#@
+ip route flush table TWServer@#@TW_NUM@#@
+
+ip route add default via @#@CN_GW@#@.1 dev eth0 table CNServer@#@CN_NUM@#@
+ip rule add from @#@CN_IP@#@ table CNServer@#@CN_NUM@#@
+
+ip route add default via @#@TW_GW@#@.1 dev eth1 table TWServer@#@TW_NUM@#@
+ip rule add from @#@TW_IP@#@ table TWServer@#@TW_NUM@#@
