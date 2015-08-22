@@ -14,6 +14,16 @@ htpasswd -c /etc/squid/passwd squid_user
 chkconfig squid on
 service squid restart
 
+echo "y"|cp etc/opt/ss5/ss5.* /etc/opt/ss5/
+chmod 750 /etc/opt/ss5/ss5.passwd
+chkconfig ss5 on
+service ss5 restart
+
+cp etc/init.d/shadowsocks /etc/init.d/
+chmod +x /etc/init.d/shadowsocks
+#chkconfig shadowsocks on
+#service shadowsocks restart
+
 grep "tw_host" /etc/hosts
 if [ $? -ne 0 ];
 then
@@ -22,20 +32,20 @@ then
     hostname tw_host${TW_NUM}
 fi
 
-grep "$TW_NUM" /etc/iproute2/rt_tables
-if [ $? -ne 0 ];
-then
-	cat etc/iproute2/rt_tables |sed -e "s/@#@CN_NUM@#@/$CN_NUM/g" -e "s/@#@TW_NUM@#@/$TW_NUM/g" >> /etc/iproute2/rt_tables
-fi
-
-grep "$TW_IP" /etc/rc.local
-if [ $? -ne 0 ];
-then
-	cat etc/rc.local|sed -e "s/@#@CN_NUM@#@/$CN_NUM/g" \
-                             -e "s/@#@TW_NUM@#@/$TW_NUM/g" \
-                             -e "s/@#@CN_IP@#@/$CN_IP/g" \
-                             -e "s/@#@TW_IP@#@/$TW_IP/g" \
-                             -e "s/@#@CN_GW@#@/$CN_GW/g" \
-                             -e "s/@#@TW_GW@#@/$TW_GW/g" \
-            >> /etc/rc.local
-fi
+# grep "$TW_NUM" /etc/iproute2/rt_tables
+# if [ $? -ne 0 ];
+# then
+# 	cat etc/iproute2/rt_tables |sed -e "s/@#@CN_NUM@#@/$CN_NUM/g" -e "s/@#@TW_NUM@#@/$TW_NUM/g" >> /etc/iproute2/rt_tables
+# fi
+# 
+# grep "$TW_IP" /etc/rc.local
+# if [ $? -ne 0 ];
+# then
+# 	cat etc/rc.local|sed -e "s/@#@CN_NUM@#@/$CN_NUM/g" \
+#                              -e "s/@#@TW_NUM@#@/$TW_NUM/g" \
+#                              -e "s/@#@CN_IP@#@/$CN_IP/g" \
+#                              -e "s/@#@TW_IP@#@/$TW_IP/g" \
+#                              -e "s/@#@CN_GW@#@/$CN_GW/g" \
+#                              -e "s/@#@TW_GW@#@/$TW_GW/g" \
+#             >> /etc/rc.local
+# fi
