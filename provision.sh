@@ -15,6 +15,7 @@ chkconfig squid on
 service squid restart
 
 echo "y"|cp etc/opt/ss5/ss5.* /etc/opt/ss5/
+echo "y"|cp etc/init.d/ss5 /etc/init.d/
 chmod 750 /etc/opt/ss5/ss5.passwd
 chkconfig ss5 on
 service ss5 restart
